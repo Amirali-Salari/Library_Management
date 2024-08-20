@@ -3,8 +3,8 @@ const { Schema, model } = mongoose;
 
 const usersSchema = new Schema({
     name: String,
-    username: String,
-    email: String,
+    username: { type: String, unique: true },
+    email: { type: String, unique: true },
     crime: Number,
     role: String,
 });
