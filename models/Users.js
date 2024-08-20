@@ -11,8 +11,3 @@ const usersSchema = new Schema({
 
 const users = model('users', usersSchema);
 export default users;
-
-export const getAllUsers = () => {
-    const allUsers = users.find({});
-    return allUsers;
-}
