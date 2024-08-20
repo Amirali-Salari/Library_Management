@@ -4,4 +4,7 @@ import * as usersController from '../controllers/usersController.js'
 const Router = express.Router();
 export default Router;
 
-Router.get('/', usersController.getAllUsers)
+Router
+    .route('/')
+    .get(usersController.getAllUsers)
+    .post(usersController.addUser)
