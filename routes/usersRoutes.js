@@ -5,6 +5,7 @@ const Router = express.Router();
 export default Router;
 
 Router
-    .route('/')
+    .route('/:username?')
     .get(usersController.getAllUsers)
     .post(usersController.addUser)
+    .put(usersController.setCrime)
