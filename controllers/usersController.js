@@ -1,5 +1,5 @@
 import users from '../models/Users.js';
-import bcrypt from 'bcrypt';
+import bcrypt, { hash } from 'bcrypt';
 
 export const getAllUsers = async (req, res) => {
     const allUsers = await users.find({});
@@ -10,7 +10,7 @@ export const addUser = async (req, res) => {
     try {
         const userData = new users(req.body);
         if (userData.password) {
-            const saltRounds = 10;
+            const saltRounds = 12;
 
             const salt = await bcrypt.genSalt(saltRounds);
             const hashedPassword = await bcrypt.hash(userData.password, salt);
@@ -61,5 +61,28 @@ export const upgradeUser = async (req, res) => {
         }
     } catch (error) {
         res.status(500).json({ message: 'Error upgrading user', error });
+    }
+}
+
+export const login = async (req, res) => {
+    const user = await users.findOne(
+        { username: req.body.username }
+    )
+
+    if (user) {
+        const hashedPassword = user.password;
+        const plainTextPassword = req.body.password;
+
+        bcrypt.compare(plainTextPassword, hashedPassword, (err, result) => {
+            if (err) {
+                res.status(500).json({ message: 'User authentication error:', err });
+            } else if (result) {
+                res.json({ message: 'Authentication was successful.' });
+            } else {
+                res.status(401).send({ message: 'The password is incorrect.' });
+            }
+        })
+    } else {
+
     }
 }

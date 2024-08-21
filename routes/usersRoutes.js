@@ -4,6 +4,8 @@ import * as usersController from '../controllers/usersController.js'
 const Router = express.Router();
 export default Router;
 
+Router.post('/login', usersController.login);
+
 Router
     .route('/:username?')
     .get(usersController.getAllUsers)

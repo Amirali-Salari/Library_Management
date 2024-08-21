@@ -4,7 +4,8 @@
   "description": "Library Management",
   "main": "app.js",
   "scripts": {
-    "test": "node app.js"
+    "test": "node app.js",
+    "start": "nodemon"
   },
   "keywords": [
     "library_management"
