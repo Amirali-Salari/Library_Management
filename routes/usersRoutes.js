@@ -9,3 +9,5 @@ Router
     .get(usersController.getAllUsers)
     .post(usersController.addUser)
     .put(usersController.setCrime)
+
+Router.put('/upgrade/:username', usersController.upgradeUser);

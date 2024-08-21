@@ -7,6 +7,7 @@ const usersSchema = new Schema({
     email: { type: String, unique: true },
     crime: Number,
     role: String,
+    password: String
 });
 
 const users = model('users', usersSchema);
