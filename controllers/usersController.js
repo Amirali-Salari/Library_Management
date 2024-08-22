@@ -28,16 +28,16 @@ export const addUser = async (req, res) => {
 
 }
 
-export const setCrime = async (req, res) => {
+export const setFine = async (req, res) => {
     try {
         const updatedUser = await users.findOneAndUpdate(
             { username: req.params.username },
-            { crime: req.body.crime },
+            { fine: req.body.fine },
             { new: true }
         )
 
         if (updatedUser) {
-            res.status(200).json({ message: 'User crime updated successfully', updatedUser });
+            res.status(200).json({ message: 'User fine updated successfully', updatedUser });
         } else {
             res.status(404).json({ message: 'User not found' });
         }
