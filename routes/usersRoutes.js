@@ -1,5 +1,6 @@
 import express from 'express';
-import * as usersController from '../controllers/usersController.js'
+import * as usersController from '../controllers/usersController.js';
+import validateData from '../middlewares/usersMiddleware.js';
 
 const Router = express.Router();
 export default Router;
@@ -9,7 +10,7 @@ Router.post('/login', usersController.login);
 Router
     .route('/:username?')
     .get(usersController.getAllUsers)
-    .post(usersController.addUser)
+    .post(validateData, usersController.addUser)
     .put(usersController.setCrime)
 
 Router.put('/upgrade/:username', usersController.upgradeUser);
