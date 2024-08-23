@@ -4,4 +4,7 @@ import * as booksController from '../controllers/booksController.js';
 const Router = express.Router();
 export default Router;
 
-Router.get('/', booksController.getAllBooks);
+Router
+    .route('/:id?')
+    .get(booksController.getAllBooks)
+    .delete(booksController.deleteBook)
