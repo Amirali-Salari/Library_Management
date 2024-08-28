@@ -20,3 +20,15 @@ export const deleteBook = async (req, res) => {
         res.status(500).send({ message: 'Error deleting book', error });
     }
 }
+
+export const addBook = async (req, res) => {
+    try {
+        const newBook = new books(req.body);
+
+        const addedBook = await newBook.save();
+        console.log('Book added:', addedBook);
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+
+}

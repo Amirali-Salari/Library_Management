@@ -8,3 +8,4 @@ Router
     .route('/:id?')
     .get(booksController.getAllBooks)
     .delete(booksController.deleteBook)
+    .post(booksController.addBook)
